@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="text-center py-5 mt-5 justify-content-center">
+            <h1 class="rahi"> 【﻿Ｉｃｅ　Ｓｅａｒｃｈ】</h1>
+        </div>
+        <div class="py-5">
+            <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+                <div class="p-5" >
+                    <input type="text" name="q" style="box-shadow: 0 4px 8px black;" class="form-control speack text-center p-4 font-weight-bold rounded-circle" placeholder="Type here! what are you looking for? &#x1F607; ">
+                </div>
+ 
+                
+             </form>
+        </div>
+    </div>
+
+    <script>
+        window.onload=function(){
+
+            var msg = new SpeechSynthesisUtterance('গরিব এর সার্চ ইঞ্জিন এ আপনাকে স্বাগতম!');
+            window.speechSynthesis.speak(msg);
+        }
+      var input=document.querySelector('.speack');
+      input.addEventListener('keypress',function(event){
+          if (event.keyCode === 13){
+
+            var msg = new SpeechSynthesisUtterance('searching'+input.value);
+            window.speechSynthesis.speak(msg);
+
+          }
+      })
+
+          
+
+    
+       
+    </script>
+
+{% endblock body %}

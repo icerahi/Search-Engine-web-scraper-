@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-white border fixed-top">
+    <div class="container">
+        
+       <a class="navbar-brand rahi ml-auto mb-1" href="{% url 'home' %}">【﻿Ｉｃｅ　Ｓｅａｒｃｈ】</a>
+                   
+       <form action="" class="col-md-8 ml-sm-3 mr-auto" method="post">
+       {% csrf_token %}
+        <input id="input" name="q" class="form-control font-weight-bold py-4" type="search" value="{{request.POST.q}}" placeholder="Search" aria-label="Search">
+        </form>
+         </div>
+          
+    </div>
+       
+</nav>
+
+<div class="container mt-5 py-5">
+        <p class="lead">Showing you top: {{ results|length }} results</p>
+     <div class="row">
+       
+             {% for result in results %}
+            <div class="col-md-8 offset-md-1">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            
+            
+                            <h4><a href="{{result.1}}">{{result.0}}</a></h4>
+                            <a class="text-success" href="{{result.1}}">{{result.1}}</a>
+                           <small class="d-block">{{result.2}}</small>
+                           </div>
+                    </div>
+                 </div>
+
+                 {% empty %}
+                  <h4>Result's Not found!</h4>
+               
+            {% endfor %}
+                
+                
+
+
+               
+                   
+
+
+ 
+     </div>
+</div>
+
+ 
+{% endblock body %}
